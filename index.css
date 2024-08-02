@@ -1,12 +1,47 @@
 body {
   font-family: 'Poppins', sans-serif;
-  display: flex;
-  flex-direction: column;
   gap: 120px;
   background: #f3f4f7;
+  width: fit-content;
+  margin: 0;
 }
 
-.desktop-menu {
+.cross {
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 70px;
+}
+
+.mobile-menu {
+  display: none;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  background-color: rgba(36, 36, 252, 0.8);
+  backdrop-filter: blur(5px);
+  list-style-type: none;
+  padding-top: 60px;
+  top: 0;
+  margin: 0;
+  position: fixed;
+}
+
+a,
+#portfolio,
+#about,
+#contact {
+  text-decoration: none;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 44px;
+  text-align: left;
+  color: #fff;
+  padding: 15px 0 10px 4px;
+  cursor: pointer;
+}
+
+.tabs {
   display: none;
 }
 
@@ -15,9 +50,20 @@ body {
   font-size: 18px;
   font-weight: 700;
   display: flex;
-  justify-content: space-between;
-  padding: 0 0 160px;
+  justify-self: left;
   align-items: center;
+  background-color: #fff;
+  width: 100%;
+  padding: 10px 0 10px 35px;
+  position: fixed;
+}
+
+.hamburger {
+  padding-right: 40px;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 15px;
 }
 
 .bar {
@@ -26,6 +72,10 @@ body {
   background: #6070ff;
   margin: 3px 10px 3px 3px;
   border-radius: 5px;
+}
+
+.hamburger.active .bar {
+  background-color: aliceblue;
 }
 
 .greeting {
@@ -42,11 +92,11 @@ body {
   background-image: url(Shapes/intro-shapes.svg);
   background-repeat: no-repeat;
   padding: 114px 24px 114px 24px;
-  padding-top: 0;
   width: 330px;
   width: fit-content;
   background-size: 100%;
   background-color: #fff;
+  background-position: 0 67px;
 }
 
 .intro-description {
@@ -83,6 +133,7 @@ body {
   flex-grow: 2;
   flex-direction: column;
   gap: 90px;
+  padding: 100px 0;
 }
 
 .card {
@@ -167,7 +218,7 @@ body {
   color: #396df2;
   font-weight: 500;
   font-size: 17px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.5s ease;
   margin-bottom: 15px;
 }
 
@@ -188,6 +239,7 @@ body {
   border-top-right-radius: 80px;
   width: fit-content;
   padding-top: 60px;
+  color: #172b4d;
 }
 
 .about-text {
@@ -200,16 +252,7 @@ body {
 }
 
 .main-list {
-  padding: 0%;
-}
-
-.language,
-.javascript,
-.skills {
-  display: flex;
-  justify-content: space-between;
-
-  /* gap: 200px; */
+  padding: 0 0 100px 0;
 }
 
 .sub-list {
@@ -221,7 +264,7 @@ body {
 }
 
 .sub-skills {
-  width: 303px;
+  width: 90%;
   height: 66.71px;
   border-radius: 8px;
   background-color: rgba(247, 247, 249, 1);
@@ -245,10 +288,6 @@ body {
   list-style-type: none;
   padding-left: 0;
   margin: 20px;
-}
-
-.skills {
-  padding-bottom: 80px;
 }
 
 .contact-section {
@@ -314,12 +353,75 @@ body {
   width: 140px;
 }
 
+.popup-heading {
+  margin: 0;
+}
+
+.popup-window {
+  z-index: 5;
+  min-width: 295px;
+  height: auto;
+  border-radius: 16px;
+  padding: 16px;
+  background-color: #fff;
+  border: solid #dfe1e6 1px;
+  margin: 20px;
+  color: #172b4d;
+  position: absolute;
+  overflow-y: auto;
+  max-height: 90%;
+}
+
+.popup-img {
+  width: 100%;
+  max-width: 505px;
+  height: auto;
+  gap: 0;
+  border-radius: 8px;
+  align-self: center;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(221, 221, 253, 0.705);
+  backdrop-filter: blur(5px);
+  justify-content: center;
+  align-items: center;
+  z-index: 4;
+  display: none;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.popup-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.popup-cancel {
+  float: right;
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  cursor: pointer;
+}
+
 @media (min-width: 750px) {
   .intro {
     background-image: url(Shapes/intro-desktop.svg);
     border-bottom-left-radius: 130px;
     height: auto;
-    padding-left: 10%;
+    padding: 300px 0 100px 10%;
     background-color: #fff;
   }
 
@@ -340,7 +442,12 @@ body {
 
   a {
     text-decoration: none;
-    color: #6070ff;
+    color: #344563;
+    font-size: 15px;
+  }
+
+  .mobile-menu {
+    display: none;
   }
 
   .tabs {
@@ -350,18 +457,30 @@ body {
     text-align: center;
     display: flex;
     gap: 20px;
+    padding-right: 100px;
   }
 
-  .desktop-menu {
-    display: block;
+  .menu {
+    display: none;
+  }
+
+  .logo {
+    font-size: 18px;
+    font-weight: 700;
+    color: #6070ff;
   }
 
   .menu-bar {
     font-size: 18px;
     font-weight: 700;
+    color: #344563;
+    display: flex;
+    justify-content: space-between;
+    background: #fff;
+    height: 72px;
   }
 
-  .humberger {
+  .hamburger {
     display: none;
   }
 
@@ -369,6 +488,8 @@ body {
     flex-direction: row;
     gap: 30px;
     border-radius: 30px;
+    min-height: 490px;
+    width: 80%;
   }
 
   .card-title {
@@ -383,13 +504,14 @@ body {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    padding-top: 100px;
+    padding: 10% 0 10% 0%;
+    border-top-right-radius: 130px;
   }
 
   .about-content {
-    padding-left: 50px;
+    padding-left: 80px;
     width: 65%;
-    min-width: 200px;
+    min-width: 225px;
   }
 
   .sub-list {
@@ -410,6 +532,8 @@ body {
 
   .contact-section {
     background-image: url(Shapes/contact-desktop.svg);
+    border-top-left-radius: 130px;
+    width: fit-content;
   }
 
   .contact-title {
@@ -443,5 +567,37 @@ body {
   #message {
     border-radius: 0;
     width: 447px;
+  }
+
+  .popup-desktop {
+    display: flex;
+    gap: 10px;
+  }
+
+  .popup {
+    display: flex;
+    justify-content: center;
+  }
+
+  .popup-window {
+    border-radius: 30px;
+    min-height: 490px;
+    width: 80%;
+  }
+
+  .popup-img {
+    flex-grow: 3;
+    max-width: 1108px;
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+  }
+
+  .popup-tag {
+    min-width: 290px;
+  }
+
+  .popup-btn {
+    margin-top: 50px;
   }
 }
